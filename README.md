@@ -1,98 +1,330 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Card Validation API
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+A production-ready REST API that validates card numbers using the Luhn algorithm and detects card network types (Visa, Mastercard, American Express, Verve, Discover, JCB).
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+Built with Node.js, TypeScript (strict mode), and NestJS.
 
-## Description
+---
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Table of Contents
 
-## Project setup
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Running the Application](#running-the-application)
+- [API Documentation](#api-documentation)
+- [Running Tests](#running-tests)
+- [Project Structure](#project-structure)
+- [Architecture and Design Decisions](#architecture-and-design-decisions)
+- [Validation Logic](#validation-logic)
 
-```bash
-$ npm install
-```
+---
 
-## Compile and run the project
+## Prerequisites
+
+Ensure the following are installed on your machine before proceeding:
+
+- **Node.js** v18 or higher — [Download](https://nodejs.org)
+- **npm** v9 or higher (comes with Node.js)
+
+Verify your versions:
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+node --version
+npm --version
 ```
 
-## Run tests
+---
+
+## Installation
+
+**1. Clone the repository:**
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+git clone <your-repository-url>
+cd card-validation-api
 ```
 
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+**2. Install dependencies:**
 
 ```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+npm install
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+---
 
-## Resources
+## Running the Application
 
-Check out a few resources that may come in handy when working with NestJS:
+**Development mode** (auto-restarts on file changes):
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+```bash
+npm run start:dev
+```
 
-## Support
+**Production mode:**
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+```bash
+npm run build
+npm run start:prod
+```
 
-## Stay in touch
+The server starts on **http://localhost:3000** by default.
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+---
 
-## License
+## API Documentation
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+### `POST /card/validate`
+
+Validates a card number using the Luhn algorithm and identifies the card network.
+
+#### Request
+
+| Field        | Type   | Required | Description                              |
+|--------------|--------|----------|------------------------------------------|
+| `cardNumber` | string | Yes      | Digit-only string, between 13–19 digits  |
+
+```json
+{
+  "cardNumber": "4111111111111111"
+}
+```
+
+#### Success Response — `200 OK`
+
+Returned for all valid requests, regardless of whether the card number passes validation.
+
+```json
+{
+  "valid": true,
+  "cardType": "Visa",
+  "cardNumber": "4111111111111111"
+}
+```
+
+| Field        | Type    | Description                                              |
+|--------------|---------|----------------------------------------------------------|
+| `valid`      | boolean | Whether the card number passes the Luhn checksum         |
+| `cardType`   | string  | Detected card network (`Visa`, `Mastercard`, `American Express`, `Verve`, `Discover`, `JCB`, `Unknown`) |
+| `cardNumber` | string  | The card number that was evaluated                       |
+
+#### Error Response — `400 Bad Request`
+
+Returned when the request body is malformed, missing required fields, or contains unexpected properties.
+
+```json
+{
+  "statusCode": 400,
+  "error": "Bad Request",
+  "message": "Validation failed",
+  "details": [
+    "cardNumber must contain only digits and be between 13 and 19 characters long"
+  ],
+  "timestamp": "2024-01-15T10:30:00.000Z",
+  "path": "/card/validate"
+}
+```
+
+#### Example Requests
+
+**Valid Visa card:**
+```bash
+curl -X POST http://localhost:3000/card/validate \
+  -H "Content-Type: application/json" \
+  -d '{"cardNumber": "4111111111111111"}'
+```
+
+**Valid Mastercard:**
+```bash
+curl -X POST http://localhost:3000/card/validate \
+  -H "Content-Type: application/json" \
+  -d '{"cardNumber": "5500005555555559"}'
+```
+
+**Invalid card number (fails Luhn):**
+```bash
+curl -X POST http://localhost:3000/card/validate \
+  -H "Content-Type: application/json" \
+  -d '{"cardNumber": "4111111111111112"}'
+```
+```json
+{
+  "valid": false,
+  "cardType": "Visa",
+  "cardNumber": "4111111111111112"
+}
+```
+
+**Missing field:**
+```bash
+curl -X POST http://localhost:3000/card/validate \
+  -H "Content-Type: application/json" \
+  -d '{}'
+```
+```json
+{
+  "statusCode": 400,
+  "error": "Bad Request",
+  "message": "Validation failed",
+  "details": [
+    "cardNumber is required",
+    "cardNumber must be a string",
+    "cardNumber must contain only digits and be between 13 and 19 characters long"
+  ],
+  "timestamp": "2024-01-15T10:30:00.000Z",
+  "path": "/card/validate"
+}
+```
+
+---
+
+## Running Tests
+
+**Run all tests:**
+```bash
+npm run test
+```
+
+**Run tests in watch mode** (reruns on file save — recommended during development):
+```bash
+npm run test:watch
+```
+
+**Run tests with coverage report:**
+```bash
+npm run test:cov
+```
+
+### Test Coverage
+
+The test suite is split into two layers:
+
+**Unit Tests** — test each piece of logic in complete isolation:
+- `luhn.util.spec.ts` — valid cards, invalid cards, edge cases (identical digits, all zeros)
+- `card-type.util.spec.ts` — all supported networks, unknown prefixes, Verve/Discover BIN overlap
+- `card.service.spec.ts` — service orchestration, return shape contract, spy-based utility isolation
+
+**Integration Tests** — test the full HTTP stack end to end:
+- `card.controller.spec.ts` — real NestJS app instance, real HTTP requests via supertest, validates the entire request/response cycle including pipes and filters
+
+---
+
+## Project Structure
+
+src/
+├── card/
+│   ├── dto/
+│   │   └── validate-card.dto.ts              # Input shape and validation rules
+│   ├── interfaces/
+│   │   └── card-validation-result.interface.ts  # Service-controller response contract
+│   ├── utils/
+│   │   ├── luhn.util.ts                      # Luhn algorithm (pure function)
+│   │   ├── luhn.util.spec.ts                 # Luhn unit tests
+│   │   ├── card-type.util.ts                 # Card network detection (pure function)
+│   │   └── card-type.util.spec.ts            # Card type unit tests
+│   ├── card.controller.ts                    # HTTP layer — routing and delegation only
+│   ├── card.controller.spec.ts               # Integration tests
+│   ├── card.module.ts                        # Feature module registration
+│   ├── card.service.ts                       # Orchestration layer
+│   └── card.service.spec.ts                  # Service unit tests
+├── common/
+│   └── filters/
+│       └── http-exception.filter.ts          # Global error response formatter
+├── app.module.ts                             # Root application module
+└── main.ts                                   # Bootstrap and global configuration
+
+---
+
+## Architecture and Design Decisions
+
+### Framework — NestJS over Express
+
+NestJS was chosen over plain Express for its enforced module system, built-in dependency injection, and decorator-based structure. These features make the codebase predictable at scale — every developer follows the same architectural pattern regardless of their background. Express offers more freedom, which becomes a liability on larger teams.
+
+### TypeScript Strict Mode
+
+`strict: true` is enabled alongside `noImplicitReturns`, `noUnusedLocals`, and `noUnusedParameters`. These settings catch entire categories of bugs at compile time — silent `undefined` returns, unused variables, and type mismatches — before the code ever runs. Disabling strict mode trades short-term convenience for long-term fragility.
+
+### Separation of Concerns
+
+The project enforces a strict three-layer boundary:
+
+- **Controller** — handles HTTP only. Receives the request, calls the service, returns the response. Contains zero business logic.
+- **Service** — orchestrates the validation utilities. Knows nothing about HTTP.
+- **Utilities** — pure functions with no dependencies. `luhnCheck` and `detectCardType` are framework-agnostic — they could be moved to any Node.js project unchanged.
+
+This separation means each layer can be tested, replaced, or extended independently.
+
+### Validation at the Boundary
+
+All input validation happens at the DTO layer using `class-validator`, before the request reaches the controller or service. Invalid input is rejected immediately with a descriptive error. The service never receives unvalidated data.
+
+The `ValidationPipe` is configured with:
+- `whitelist: true` — strips unknown properties silently
+- `forbidNonWhitelisted: true` — rejects requests with unknown properties entirely
+- `transform: true` — converts the raw JSON body into a typed DTO class instance
+
+### Card Number Constraints — 13 to 19 Digits
+
+The DTO accepts card numbers between 13 and 19 digits. This covers the full range of real-world card lengths:
+
+| Network | Length |
+|---|---|
+| Visa | 13 or 16 |
+| Mastercard | 16 |
+| American Express | 15 |
+| Verve | 16–19 |
+| Maestro | 12–19 |
+
+Hardcoding 16 digits would incorrectly reject valid Amex and Verve cards.
+
+### HTTP Status Codes
+
+The endpoint returns `200 OK` for all successfully processed requests — including ones where `valid` is `false`. A `200` means the server understood and processed the request correctly. The validity of the card number is a business result communicated in the response body, not through the HTTP status code.
+
+`400 Bad Request` is returned only when the request itself is malformed — missing fields, wrong types, or invalid format.
+
+### Consistent Error Format
+
+A global `HttpExceptionFilter` ensures every error response — validation failures, not found, method not allowed — returns the same shape:
+
+```json
+{
+  "statusCode": 400,
+  "error": "Bad Request",
+  "message": "Validation failed",
+  "details": ["..."],
+  "timestamp": "...",
+  "path": "..."
+}
+```
+
+This allows API consumers to write a single error handler that works for every possible error from this API.
+
+### Identical Digit Guard in Luhn
+
+The Luhn algorithm is mathematical — numbers like `1111111111111111` can satisfy the checksum by coincidence. A guard in `luhnCheck` explicitly rejects card numbers where all digits are identical. These are mathematically valid but are never issued as real cards.
+
+### Verve Before Discover — BIN Collision Resolution
+
+Verve (Nigeria's national card network) uses BIN prefixes in the `650x` range, which overlaps with Discover's `65xx` range. The card type detection rules are ordered so Verve is checked first, giving it priority for these prefixes. This is the correct behaviour for an API built with the Nigerian market in mind. A comment in the source code documents this decision explicitly.
+
+---
+
+## Validation Logic
+
+### Luhn Algorithm
+
+The Luhn algorithm (ISO/IEC 7812-1) validates that a card number is mathematically well-formed:
+
+1. Starting from the second-to-last digit, double every second digit moving left
+2. If doubling produces a value greater than 9, subtract 9
+3. Sum all digits
+4. If the total is divisible by 10, the number is valid
+
+This does not verify that a card account exists or has funds — it is a checksum that detects typos and randomly guessed numbers.
+
+### Card Type Detection
+
+Card networks are identified by their BIN (Bank Identification Number) — the first 6 digits of the card number. Each network publishes the ranges their cards use. This API encodes those ranges as regular expressions and matches them in priority order.
+
+Supported networks: Visa, Mastercard, American Express, Verve, Discover, JCB.
