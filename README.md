@@ -40,7 +40,7 @@ npm --version
 **1. Clone the repository:**
 
 ```bash
-git clone <your-repository-url>
+git clone https://github.com/Sodiaro/card-validation-api.git
 cd card-validation-api
 ```
 
