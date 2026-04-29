@@ -210,6 +210,7 @@ The test suite is split into two layers:
 
 ## Project Structure
 
+```
 src/
 ├── card/
 │   ├── dto/
@@ -231,6 +232,7 @@ src/
 │       └── http-exception.filter.ts          # Global error response formatter
 ├── app.module.ts                             # Root application module
 └── main.ts                                   # Bootstrap and global configuration
+```
 
 ---
 
