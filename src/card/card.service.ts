@@ -5,7 +5,6 @@ import { CardValidationResult } from './interfaces/card-validation-result.interf
 
 @Injectable()
 export class CardService {
-  
   validate(cardNumber: string): CardValidationResult {
     const valid = luhnCheck(cardNumber);
     const cardType = detectCardType(cardNumber);
